@@ -13,9 +13,11 @@ module.exports = () => {
       install: './src/js/install.js'
     },
     output: {
-      filename: '[name].bundle.js',
-      path: path.resolve(__dirname, 'dist'),
-    },
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+        clean: true,
+        assetModuleFilename: '[name][ext]', // No hash in filename
+      },
     plugins: [
         new HtmlWebpackPlugin({
             template: './index.html',
@@ -23,6 +25,7 @@ module.exports = () => {
             // chunks: ['main']
             }),
             new WebpackPwaManifest({
+                fingerprints: false,
                 name: 'PWA Text Editor',
                 short_name: 'pwa-txt-edtr',
                 description: 'An application that allows you to write and save text files.',
