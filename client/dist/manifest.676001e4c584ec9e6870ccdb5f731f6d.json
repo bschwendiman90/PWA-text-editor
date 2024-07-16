@@ -1,0 +1,17 @@
+{
+  "icons": [
+    {
+      "src": "/assets/icons/icon_96x96.97a96e0fc4eb2a8bec3b8d49d90f1d14.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ],
+  "name": "PWA Text Editor",
+  "short_name": "pwa-txt-edtr",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": "/",
+  "description": "An application that allows you to write and save text files.",
+  "background_color": "#01579b",
+  "theme_color": "#ffffff"
+}
