@@ -19,26 +19,28 @@ module.exports = () => {
     plugins: [
         new HtmlWebpackPlugin({
             template: './index.html',
-            filename: 'index.html',
-            chunks: ['main']
+            // filename: 'index.html',
+            // chunks: ['main']
             }),
             new WebpackPwaManifest({
                 name: 'PWA Text Editor',
                 short_name: 'pwa-txt-edtr',
-                description: 'An application that allows you write and save text files.',
+                description: 'An application that allows you to write and save text files.',
                 background_color: '#01579b',
                 theme_color: '#ffffff',
                 start_url: '/',
+                publicPath: '/',
                 icons: [
                     {
-                        src: path.resolve('./src/images/logo.png'),
+                        src: path.resolve('src/images/logo.png'),
                         sizes: [96, 128, 192, 256, 384, 512],
+                        destination: path.join('assets', 'icons'),
                     }
                 ]
             }),
             new InjectManifest({
                 swSrc: './src-sw.js',
-                swDest: 'service-worker.js'
+                swDest: 'src-sw.js',
             })
       
     ],
@@ -50,12 +52,15 @@ module.exports = () => {
           use: ['style-loader', 'css-loader'],
         },
         {
-          test: /\.js$/,
+          test: /\.m?js$/,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
             options: {
               presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-transform-runtime',
+                '@babel/plugin-proposal-object-rest-spread',
+              ],
             },
           },
         },
